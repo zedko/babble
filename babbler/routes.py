@@ -10,7 +10,6 @@ def hello_world():
 @app.route('/report/', methods=['POST'])
 def accept_report():
     response = make_response({"status": "ok. data reported"})
-
     if request.is_json:
         response.status_code = 201
         print(request.json)
