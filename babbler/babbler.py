@@ -1,4 +1,5 @@
 from babbler.notifiers.notifier import Notifier
+from babbler.models import User, Message
 
 
 class Babbler:
