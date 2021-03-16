@@ -20,8 +20,8 @@ class Message(db.Model):
     importance = db.Column(db.String, nullable=False)
     user_uuid = db.Column(UUID, db.ForeignKey('user.uuid'), nullable=False)
 
-    def __repr__(self):
-        return f'<Message {self.id} from {self.source}>'
+    def __str__(self):
+        return f'{self.importance} --> Message {self.id} from {self.source} \n{self.message}'
 
     @staticmethod
     def create_message(source: str = None,
@@ -41,7 +41,3 @@ class Message(db.Model):
             return message
         except (InvalidRequestError, StatementError):
             db.session.rollback()
-
-
-if __name__ == '__main__':
-    Message.create_message(source="source", message="message", importance="importance", user_uuid='f0eb7cd1-39ac-45f3-b00f-4a3751aa6c73')

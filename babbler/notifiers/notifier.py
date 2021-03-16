@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 
+from babbler.models import Message
+
 
 class Notifier(ABC):
     @property
@@ -11,7 +13,7 @@ class Notifier(ABC):
         }
         return methods
 
-    def notify(self, message: str, importance: str) -> None:
+    def notify(self, message: Message, importance: str) -> None:
         """
         Delivers a message via subclasses unique way
         :param importance: can be ["debug","info","error"]
@@ -26,15 +28,15 @@ class Notifier(ABC):
                            f' importance param should be one of {list(self.deliver_methods.keys())}')
 
     @abstractmethod
-    def debug_notify(self, message: str):
+    def debug_notify(self, message: Message):
         pass
 
     @abstractmethod
-    def info_notify(self, message: str):
+    def info_notify(self, message: Message):
         pass
 
     @abstractmethod
-    def error_notify(self, message: str):
+    def error_notify(self, message: Message):
         pass
 
 
